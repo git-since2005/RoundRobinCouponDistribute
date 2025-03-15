@@ -35,7 +35,7 @@ app.get("/get-coupons", async(req, res)=>{
 
 app.post("/claim", async(req, res)=>{
     let data = req.body
-    let checker = await Sessions.find({"userID":req.clientIp.slice(',")[0]})
+    let checker = await Sessions.find({"userID":req.clientIp.slice(",")[0]})
     if (checker.length>0) {
         return res.json({"status":"waiting"})
     }else{
@@ -49,7 +49,7 @@ app.post("/claim", async(req, res)=>{
 
 app.post("/save-feedback", async(req, res)=>{
     let data = req.body
-    let inserter = await Feedback({"feed":data.feed, "name":data.name, "ip":req.clientIp})
+    let inserter = await Feedback({"feed":data.feed, "name":data.name, "ip":req.clientIp.slice(",")[0]})
     inserter.save()
     if(inserter){
         return res.json({"status":"ok"})
