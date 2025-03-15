@@ -35,8 +35,8 @@ app.get("/get-coupons", async(req, res)=>{
 
 app.post("/claim", async(req, res)=>{
     let data = req.body
-    let checker = await Sessions.find({"userID":req.clientIp.slice(",")[0]})
-    console.log(checker)
+    let checker = await Sessions.find({"userID":req.clientIp.split(",")[0]})
+    console.log(checker, req.clientIps.split(",")[0])
     if (checker.length>0) {
         return res.json({"status":"waiting"})
     }else{
