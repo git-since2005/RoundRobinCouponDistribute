@@ -40,8 +40,7 @@ app.post("/claim", async(req, res)=>{
         return res.json({"status":"waiting"})
     }else{
         await Coupons.updateOne({"token" : data.token}, {"$set":{userID:`${req.clientIp}`, claimed:true, claimedAt:new Date()}})
-        console.log(data.token, req.body)
-        let session = new Sessions({"userID":req.clientIp, "expires": new Date()})
+        let session = new Sessions({"userID":req.clientIp.split(",")[0], "expires": new Date()})
         session.save()
         console.log("Here")
         return res.json({"status":"done"})
