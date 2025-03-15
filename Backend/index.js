@@ -39,7 +39,7 @@ app.post("/claim", async(req, res)=>{
     if (checker.length>0) {
         return res.json({"status":"waiting"})
     }else{
-        await Coupons.updateOne({"token" : data.token}, {"$set":{userID:`${req.clientIp.slice(",")[0]}`, claimed:true, claimedAt:new Date()}})
+        await Coupons.updateOne({"token" : data.token}, {"$set":{userID:`${req.clientIp.split(",")[0]}`, claimed:true, claimedAt:new Date()}})
         let session = new Sessions({"userID":req.clientIp.split(",")[0], "expires": new Date()})
         session.save()
         console.log("Here")
