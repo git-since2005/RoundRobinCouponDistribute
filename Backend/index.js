@@ -59,6 +59,6 @@ app.post("/save-feedback", async(req, res)=>{
     }
 })
 
-app.listen(8000, "127.0.0.1", ()=>{
+app.listen(8000, ()=>{
     log("Connected to port 5000")
 })
