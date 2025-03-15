@@ -17,7 +17,7 @@ const app = express()
 app.use(express.json())
 app.use(mongoSanitize());
 
-app.use(cors({"origin":"*"}))
+app.use(cors({"origin":"https://roundrobin-coupon.netlify.app"}))
 
 app.use(cookieParser());
 app.use((req, res, next) => {
